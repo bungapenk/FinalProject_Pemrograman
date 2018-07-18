@@ -3,8 +3,11 @@
 #include <stdlib.h>
 #include <limits>
 #include <fstream>
+#include <vector>
+#include <conio.h>
 #include "CreateData.h"
 #include "ReadData.h"
+#include "CreateVector.h"
 
 using namespace std;
 
@@ -13,64 +16,55 @@ void saveData();
 void readData();
 void searchData(int idDicari);
 void deleteData(int idDicari);
-
+void updateData(int idDicari);
 
 int main()
 {
-    /*cout << "Menulis ke file ....." << endl;
-    saveData();
-    */
-
-    cout << "\n\nMembaca dari file ....." << endl;
-    readData();
-
-    cout << "\n\nMencari Data ....\n";
-    searchData(0);
-
-    cout << "\n\nMenghapus Data ....\n";
-    deleteData(0);
-
     /*
 	* ==============
 	*   Menu Utama
 	* ==============
 	*/
-    /*
+
 	int pilihan = getOption();
 	char is_continue;
 
-	enum option{CREATE=1, READ, UPDATE, DELETE, FINISH};
-
-	while (pilihan != FINISH) {
-
-		switch (pilihan) {
-				case CREATE:
+	while (pilihan != 6) {
+		switch(pilihan) {
+				case 1:
 					system("cls");
 					cout << "=======================" << endl;
 					cout << "  Tambah Data Penyewa  " << endl;
 					cout << "=======================" << endl;
-					CreateData obj1;
-                    obj1.addDataPenyewa();
+					saveData();
 					break;
-				case READ:
+				case 2:
 					system("cls");
 					cout << "================" << endl;
 					cout << "  Data Penyewa  " << endl;
 					cout << "================" << endl;
-					CreateData obj2;
-                    obj2.outputPenyewa();
+					readData();
 					break;
-				case UPDATE:
+                case 3:
+                    system("cls");
+					cout << "=====================" << endl;
+					cout << "  Cari Data Penyewa  " << endl;
+					cout << "=====================" << endl;
+					searchData(99);
+					break;
+				case 4:
 					system("cls");
 					cout << "=====================" << endl;
 					cout << "  Ubah Data Penyewa  " << endl;
                     cout << "=====================" << endl;
+                    updateData(99);
 					break;
-				case DELETE:
+				case 5:
 					system("cls");
 					cout << "======================" << endl;
 					cout << "  Hapus Data Penyewa  " << endl;
 					cout << "======================" << endl;
+					deleteData(99);
 					break;
 				default:
 					system("cls");
@@ -81,17 +75,19 @@ int main()
 			}
 
 			label_continue:
-
+            cout << "\n\n-------------------------------------" << endl;
 			cout << "Lanjutkan? (y/n) : ";
-			cin >> is_continue;
+			cout << "\n-------------------------------------" << endl;
+            cin >> is_continue;
+
 			if ((is_continue == 'y') || (is_continue == 'Y')) {
 				pilihan = getOption();
 			}
 			else if ((is_continue == 'n') || (is_continue == 'N')) {
 				system("cls");
-				cout << "===========" << endl;
-				cout << "Terimakasih" << endl;
-				cout << "===========" << endl;
+				cout << "===============" << endl;
+				cout << "  Terimakasih  " << endl;
+				cout << "===============" << endl;
 				break;
 			}
 			else {
@@ -104,8 +100,6 @@ int main()
 	cout << "  Terimakasih  " << endl;
 	cout << "===============" << endl;
 
-	cin.get();
-	*/
 	return 0;
 }
 
@@ -113,16 +107,20 @@ int getOption() {
 	int input;
 
 	system("cls");
-	cout << "\n=======================" << endl;
-	cout << "SEWA FUTSAL DENGAN CRUD" << endl;
-	cout << "=======================" << endl;
+	cout << endl;
+	cout << "=============================" << endl;
+	cout << "      SEWA FUTSAL IF-04      " << endl;
+	cout << "-----------------------------" << endl;
+	cout << "       (Berbasis CRUD)       " << endl;
+	cout << "=============================" << endl;
 	cout << "1. Tambah Data Penyewa" << endl;
 	cout << "2. Lihat Data Penyewa" << endl;
-	cout << "3. Ubah Data Penyewa" << endl;
-	cout << "4. Hapus Data Penyewa" << endl;
-	cout << "5. Keluar Program" << endl;
+	cout << "3. Cari Data Penyewa" << endl;
+	cout << "4. Ubah Data Penyewa" << endl;
+	cout << "5. Hapus Data Penyewa" << endl;
+	cout << "6. Keluar Program" << endl;
 	cout << "=======================" << endl;
-	cout << "Masukkan Pilihan [1-5] : ";
+	cout << "Masukkan Pilihan [1-6] : ";
 	cin >> input;
 	cin.ignore(numeric_limits<streamsize>::max(),'\n');
 	return input;
@@ -160,16 +158,18 @@ void searchData(int idDicari) {
     ifstream f;
     f.open( fileName, ios::binary );
 
+    readData();
+
     cout << "Masukkan ID yang dicari : ";
     cin >> idDicari;
     while( f.read( (char*)&obj1, sizeof(obj1) ) ) {
         // kalau nama ketemu
-            if(obj1.getID() == idDicari) {
-                idKetemu = obj1;
-                ketemu = 1;
+        if(obj1.getID() == idDicari) {
+            idKetemu = obj1;
+            ketemu = 1;
 
-                break;
-            }
+            break;
+        }
     }
 
     if(ketemu == 0) {
@@ -187,11 +187,32 @@ void searchData(int idDicari) {
 void updateData(int idDicari) {
     CreateData obj1;
     fstream f;
-    f.open( fileName, ios::in || ios::out )
+    f.open( fileName, ios::in | ios::out );
+
+    readData();
+
+    cout << "Masukkan ID yang diubah : ";
+    cin >> idDicari;
+    while( f.read( (char*) &obj1, sizeof(obj1) ) ) {
+        if(obj1.getID() == idDicari) {
+
+            cout << "Silahkan masukkan data baru ...." << endl;
+            saveData();
+
+            int pos = -1 * sizeof(obj1);
+            f.seekp(pos, ios::cur);
+            f.write( (char*) &obj1, sizeof(obj1) );
+
+            break;
+        }
+    }
+
+    f.close();
 }
 
 
 void deleteData(int idDicari) {
+
     CreateData obj1;
 
     ifstream fi;
@@ -201,6 +222,8 @@ void deleteData(int idDicari) {
     fo.open("tmp.dat", ios::out | ios::binary);
 
     int ketemu = 0;
+
+    readData();
 
     cout << "Masukkan ID yang ingin dihapus : ";
     cin >> idDicari;

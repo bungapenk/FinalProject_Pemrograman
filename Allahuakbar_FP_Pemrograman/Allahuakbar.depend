@@ -36,3 +36,49 @@
 	"CreateData.h"
 	"ReadData.h"
 
+1531947470 source:d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\createdata.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	"CreateData.h"
+
+1531939506 d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\createdata.h
+
+1531933704 source:d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\readdata.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	"CreateData.h"
+	"ReadData.h"
+
+1531932647 d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\readdata.h
+
+1531950661 source:d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	<vector>
+	<conio.h>
+	"CreateData.h"
+	"ReadData.h"
+	"CreateVector.h"
+
+1531956608 d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\createvector.h
+	<string>
+
+1531951645 source:d:\ngampus\struktur data\final project\allahuakbar_fp_pemrograman\createvector.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	<vector>
+	<conio.h>
+	"CreateVector.h"
+

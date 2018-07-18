@@ -8,12 +8,11 @@
 using namespace std;
 
 void CreateData::addDataPenyewa() {
-
-    cout << "----------------------------------" << endl;
-    cout << "Nomor yang anda suka [ID] : ";
-    cin >> id;
+    cout << "-------------------------------------" << endl;
     cout << "Masukkan jumlah penyewa : ";
     cin >> jml;
+    cout << "Nomor yang anda suka [ID] : ";
+    cin >> id;
 	for (int i = 0; i< jml; i++) {
 		cout << "Nama Penyewa : ";
 		cin >> nama[i];
@@ -24,11 +23,11 @@ void CreateData::addDataPenyewa() {
 		cout << "Lama Main (/jam) : ";
 		cin >> lama[i];
 	}
-	cout << "----------------------------------" << endl;
+	cout << "-------------------------------------" << endl;
 }
 
 void CreateData::outputPenyewa() {
-    cout << "================================" << endl;
+    cout << "-------------------------------------" << endl;
     cout << "Nomor yang anda suka [ID] : " << id << endl;
 	for (int i = 0; i< jml; i++) {
 		cout << "Nama Anda : " << nama[i] << endl;
@@ -39,11 +38,9 @@ void CreateData::outputPenyewa() {
 		 total = lama[i] * 90000;
 		cout << "Total Bayar : " << total << endl;
     }
-    cout << "================================" << endl;
+    cout << "-------------------------------------\n" << endl;
 }
 
 int CreateData::getID() {
     return id;
 }
-
-
