@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1531941703 source:d:\ngampus\struktur data\final project\allahuakbar\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	"CreateData.h"
+	"ReadData.h"
+
+1531931630 source:d:\ngampus\struktur data\final project\allahuakbar\test.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<string>
+	<limits>
+
+1531939506 d:\ngampus\struktur data\final project\allahuakbar\createdata.h
+
+1531940054 source:d:\ngampus\struktur data\final project\allahuakbar\createdata.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	"CreateData.h"
+
+1531932647 d:\ngampus\struktur data\final project\allahuakbar\readdata.h
+
+1531933704 source:d:\ngampus\struktur data\final project\allahuakbar\readdata.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<limits>
+	<fstream>
+	"CreateData.h"
+	"ReadData.h"
+
