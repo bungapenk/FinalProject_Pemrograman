@@ -33,7 +33,6 @@ public:
             cin >> data.jam[i];
             cout << "Lama Main (/jam): ";
             cin >> data.lamaMain[i];
-            cin.get();
         }
 
     }
@@ -109,6 +108,13 @@ int main() {
             goto balikLanjut;
         }
     }
+    system("cls");
+    cout << "===============" << endl;
+    cout << "  Terimakasih  " << endl;
+    cout << "===============" << endl;
+
+    cin.get();
+    return 0;    
 }    
 
 int getMenuUtama() {
